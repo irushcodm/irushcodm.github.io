@@ -1,248 +1,197 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rushil Thind | BCom Student & Analyst</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Use Inter font family -->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0d1117; /* Dark background */
-            color: #e5e7eb; /* Light text */
-        }
-        /* Custom scrollbar for aesthetics */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
-        ::-webkit-scrollbar-track { background: #0d1117; }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-accent': '#38bdf8', // Sky Blue 400
-                        'card-bg': '#1f2937', // Dark Grey/Blue
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="min-h-screen">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rushil Thind — BCom Student</title>
+  <meta name="description" content="Personal website of a B.Com second year student showcasing education, projects and contact details." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f0f7ff; --card:#ffffff; --muted:#5e6a73; --accent:#3b82f6; --accent-light:#93c5fd; --shadow:0 6px 18px rgba(59,130,246,0.15); --radius:14px;
+    }
 
-    <!-- Header & Navigation -->
-    <header class="sticky top-0 z-50 bg-[#0d1117]/95 backdrop-blur-sm shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <div class="text-xl font-bold text-primary-accent">Rushil Thind</div>
-            <nav class="hidden md:flex space-x-6">
-                <a href="#about" class="text-gray-300 hover:text-primary-accent transition duration-200">About</a>
-                <a href="#education" class="text-gray-300 hover:text-primary-accent transition duration-200">Education</a>
-                <a href="#skills" class="text-gray-300 hover:text-primary-accent transition duration-200">Skills</a>
-                <a href="#projects" class="text-gray-300 hover:text-primary-accent transition duration-200">Projects</a>
-                <a href="#contact" class="text-gray-300 hover:text-primary-accent transition duration-200">Contact</a>
-            </nav>
-            <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-primary-accent focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
+    *{box-sizing:border-box;transition:all 0.25s ease-in-out}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;background:linear-gradient(180deg,var(--bg),#e1efff 100%);}
+    .container{max-width:1100px;margin:48px auto;padding:28px}
+    header{display:flex;gap:16px;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:14px;align-items:center}
+    .avatar{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-light));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;box-shadow:var(--shadow)}
+    h1{margin:0;font-size:28px}
+    p.lead{margin:6px 0 0;color:var(--muted)}
+
+    .controls{display:flex;gap:10px;align-items:center}
+    .btn{padding:10px 14px;border-radius:10px;background:var(--card);box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.05);cursor:pointer;transition:transform 0.2s ease,box-shadow 0.2s ease}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(59,130,246,0.25)}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-light));color:white;font-weight:600;border:none}
+
+    main{display:grid;grid-template-columns:1fr 360px;gap:26px;margin-top:28px}
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);transition:transform 0.2s ease,box-shadow 0.2s ease}
+    .card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(59,130,246,0.25)}
+
+    .about{line-height:1.6;color:var(--muted)}
+    .section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;color:#1e293b}
+    .edu-item, .proj-item{padding:12px;border-radius:10px;background:#f8fbff;margin-bottom:10px;border:1px solid #dbeafe}
+    .skill-list{display:flex;gap:8px;flex-wrap:wrap}
+    .skill{padding:6px 10px;border-radius:999px;background:rgba(59,130,246,0.08);font-weight:600;color:var(--accent)}
+
+    aside .card{position:relative;top:auto}
+    .contact small{color:var(--muted)}
+
+    footer{margin-top:40px;color:var(--muted);text-align:center}
+
+    @media (max-width:980px){main{grid-template-columns:1fr} aside .card{position:static}}
+
+    a.link{color:var(--accent);text-decoration:none;font-weight:600}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+
+    .download{display:inline-flex;gap:8px;align-items:center;padding:10px 12px;border-radius:10px;border:1px dashed rgba(0,0,0,0.06);background:#f1f5ff;transition:background 0.2s ease}
+    .download:hover{background:#dbeafe}
+
+    form input, form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);background:transparent;color:inherit}
+  </style>
+</head>
+<body data-theme="light">
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="avatar">RT</div>
+        <div>
+          <h1>Rushil Thind</h1>
+          <p class="lead">B.Com — 2nd Year · Aspiring Finance & Accounting Professional</p>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2 text-center bg-[#0d1117]">
-            <a href="#about" class="block text-gray-300 hover:text-primary-accent transition duration-200 py-2" onclick="toggleMobileMenu()">About</a>
-            <a href="#education" class="block text-gray-300 hover:text-primary-accent transition duration-200 py-2" onclick="toggleMobileMenu()">Education</a>
-            <a href="#skills" class="block text-gray-300 hover:text-primary-accent transition duration-200 py-2" onclick="toggleMobileMenu()">Skills</a>
-            <a href="#projects" class="block text-gray-300 hover:text-primary-accent transition duration-200 py-2" onclick="toggleMobileMenu()">Projects</a>
-            <a href="#contact" class="block text-gray-300 hover:text-primary-accent transition duration-200 py-2" onclick="toggleMobileMenu()">Contact</a>
-        </div>
+      </div>
+      <div class="controls">
+        <a class="btn primary" href="#contact">Contact Me</a>
+      </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+    <main>
+      <section>
+        <div class="card">
+          <h2>About</h2>
+          <p class="about">Hi — I'm <strong>Rushil Thind</strong>, born 5 April 2006 in Jalandhar, India. I'm a B.Com second-year student at Goswami Ganesh Dutta Sanatan Dharma College, Sector 32, Chandigarh (expected graduation 2027). I’m passionate about accounting, taxation and business analytics. I enjoy converting financial data into clear stories, learning Excel &amp; Tally, and working on projects and internships to build practical skills.</p>
+          <p style="margin-top:12px"><strong>Looking for:</strong> internships, project collaborations, and mentorship in accounting/finance.</p>
 
-        <!-- Hero Section -->
-        <section id="hero" class="text-center py-20">
-            <div class="w-32 h-32 mx-auto mb-6 bg-gray-700 rounded-full flex items-center justify-center border-4 border-primary-accent shadow-xl">
-                <!-- Replace with your professional photo or icon -->
-                <span class="text-5xl font-extrabold text-primary-accent">RT</span>
+          <hr style="margin:18px 0;border:none;border-top:1px solid rgba(0,0,0,0.05)" />
+
+          <div class="section-title">
+            <h3 style="margin:0">Skills</h3>
+            <small style="color:var(--muted)">Level: Beginner → Intermediate</small>
+          </div>
+          <div class="skill-list">
+            <div class="skill">Accounting</div>
+            <div class="skill">MS Excel</div>
+            <div class="skill">Tally</div>
+            <div class="skill">GST & Taxation</div>
+            <div class="skill">Business Comm.</div>
+            <div class="skill">Basic Python</div>
+          </div>
+
+          <hr style="margin:18px 0;border:none;border-top:1px solid rgba(0,0,0,0.05)" />
+
+          <div>
+            <div class="section-title"><h3 style="margin:0">Education</h3><small class="muted">Expected graduation: 2027</small></div>
+            <div class="edu-item">
+              <strong>Goswami Ganesh Dutta Sanatan Dharma College, Sector 32, Chandigarh</strong>
+              <div style="color:var(--muted);font-size:13px">B.Com — 2nd Year · Relevant courses: Financial Accounting, Cost Accounting, Business Law</div>
             </div>
-            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-2 leading-tight">
-                Hi, I'm <span class="text-primary-accent">Rushil Thind</span>
-            </h1>
-            <p class="text-xl text-gray-400 mb-8">
-                Second-Year B.Com Student | Aspiring Financial Analyst
-            </p>
-            <a href="#contact" class="bg-primary-accent text-gray-900 font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-sky-300 transition duration-300 transform hover:scale-105">
-                Connect with Me
-            </a>
-        </section>
-
-        <!-- About Me Section -->
-        <section id="about" class="pt-10 border-t border-gray-700">
-            <h2 class="text-3xl font-bold text-white mb-6 border-b-2 border-primary-accent inline-block pb-1">About Me</h2>
-            <div class="bg-card-bg p-8 rounded-xl shadow-2xl">
-                <p class="text-lg text-gray-300 leading-relaxed">
-                    I am a highly motivated second-year Bachelor of Commerce student with a strong foundation in **Financial Accounting**, **Business Law**, and **Economics**. My core interest lies in leveraging **data analysis** to drive strategic business decisions, particularly within the investment banking sector. I am currently focused on mastering advanced Excel modeling and learning introductory Python for financial data handling. I thrive in team environments and am actively seeking an internship opportunity to apply theoretical knowledge to real-world business challenges.
-                </p>
+            <div class="edu-item">
+              <strong>Government Model Senior Secondary School, Sector 35, Chandigarh</strong>
+              <div style="color:var(--muted);font-size:13px">Higher Secondary Education — CBSE Board · Completed in 2024</div>
             </div>
-        </section>
-
-        <!-- Education and Skills Section (Side-by-Side on Desktop) -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-
-            <!-- Education Section -->
-            <section id="education" class="pt-10 border-t border-gray-700">
-                <h2 class="text-3xl font-bold text-white mb-6 border-b-2 border-primary-accent inline-block pb-1">Education</h2>
-                <div class="space-y-6">
-                    <!-- BCom Entry (Most Recent) -->
-                    <div class="bg-card-bg p-6 rounded-xl shadow-xl hover:shadow-primary-accent/30 transition duration-300">
-                        <h3 class="text-xl font-semibold text-primary-accent">Bachelor of Commerce (B.Com)</h3>
-                        <p class="text-gray-300 mt-1">GGDS SD College, Chandigarh</p>
-                        <p class="text-sm text-gray-400">Expected Graduation: June 2028</p>
-                        <ul class="list-disc list-inside text-gray-400 text-sm mt-3 space-y-1">
-                            <li>Major Courses: Financial Management, Cost Accounting, Corporate Tax.</li>
-                            <li>Current GPA/Percentage: 8.5/10.0 (or mention percentage).</li>
-                        </ul>
-                    </div>
-                    <!-- Class XI & XII Entry -->
-                    <div class="bg-card-bg p-6 rounded-xl shadow-xl">
-                        <h3 class="text-xl font-semibold text-white">Class XI & XII (Commerce Stream)</h3>
-                        <p class="text-gray-300 mt-1">GMSSS 35, Chandigarh</p>
-                        <p class="text-sm text-gray-400">Graduated: May 2023 | Grade: Mention Percentage/CGPA</p>
-                    </div>
-                    <!-- Class X Entry (NEW) -->
-                    <div class="bg-card-bg p-6 rounded-xl shadow-xl">
-                        <h3 class="text-xl font-semibold text-white">Class X (Secondary Education)</h3>
-                        <p class="text-gray-300 mt-1">SJSSS Sector 44D, Chandigarh</p>
-                        <p class="text-sm text-gray-400">Graduated: May 2021 | Grade: Mention Percentage/CGPA</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Skills Section -->
-            <section id="skills" class="pt-10 border-t border-gray-700">
-                <h2 class="text-3xl font-bold text-white mb-6 border-b-2 border-primary-accent inline-block pb-1">Skills</h2>
-                <div class="bg-card-bg p-6 rounded-xl shadow-xl">
-                    <h3 class="text-xl font-semibold text-primary-accent mb-4">Technical & Software</h3>
-                    <div class="flex flex-wrap gap-3 mb-6">
-                        <span class="skill-badge">Advanced MS Excel</span>
-                        <span class="skill-badge">Tally ERP</span>
-                        <span class="skill-badge">Financial Modeling</span>
-                        <span class="skill-badge">Basic Python (Pandas)</span>
-                        <span class="skill-badge">SQL (Introductory)</span>
-                        <span class="skill-badge">PowerPoint & Presentation</span>
-                    </div>
-
-                    <h3 class="text-xl font-semibold text-primary-accent mb-4">Soft Skills</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-badge">Analytical Thinking</span>
-                        <span class="skill-badge">Team Collaboration</span>
-                        <span class="skill-badge">Effective Communication</span>
-                        <span class="skill-badge">Time Management</span>
-                        <span class="skill-badge">Problem-Solving</span>
-                    </div>
-                </div>
-            </section>
+          </div>
         </div>
 
-        <!-- Projects Section -->
-        <section id="projects" class="pt-10 border-t border-gray-700">
-            <h2 class="text-3xl font-bold text-white mb-8 border-b-2 border-primary-accent inline-block pb-1">Academic Projects & Experience</h2>
+        <div style="height:18px"></div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Project 1 Card -->
-                <div class="bg-card-bg p-6 rounded-xl shadow-xl hover:ring-2 ring-primary-accent transition duration-300">
-                    <h3 class="text-2xl font-semibold text-primary-accent mb-2">Financial Statement Analysis</h3>
-                    <span class="text-sm text-gray-400 block mb-3">Academic Project | Oct 2024</span>
-                    <p class="text-gray-300 mb-4">
-                        Conducted a comprehensive ratio analysis of a publicly traded FMCG company over three fiscal years. Identified trends in profitability, liquidity, and solvency, culminating in a detailed 15-page report recommending a 'Hold' position.
-                    </p>
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-sm text-primary-accent hover:text-sky-300 font-medium">
-                        View Details/Report Outline &rarr;
-                    </a>
-                </div>
+        <div class="card">
+          <div class="section-title"><h3 style="margin:0">Projects & Experience</h3><small style="color:var(--muted)">Internships & college projects</small></div>
 
-                <!-- Project 2 Card (or Internship) -->
-                <div class="bg-card-bg p-6 rounded-xl shadow-xl hover:ring-2 ring-primary-accent transition duration-300">
-                    <h3 class="text-2xl font-semibold text-primary-accent mb-2">Market Research for Startup X</h3>
-                    <span class="text-sm text-gray-400 block mb-3">Volunteer Experience | Summer 2024</span>
-                    <p class="text-gray-300 mb-4">
-                        Assisted a local startup by researching competitor pricing strategies and consumer demographics. Compiled findings into an interactive Excel dashboard to help leadership finalize their Q4 marketing budget and product positioning.
-                    </p>
-                    <a href="https://github.com/yourprofile" target="_blank" class="text-sm text-primary-accent hover:text-sky-300 font-medium">
-                        View Artifacts &rarr;
-                    </a>
-                </div>
-            </div>
-        </section>
+          <div class="proj-item">
+            <strong>Intern — Local Accounting Firm</strong>
+            <div style="color:var(--muted);font-size:13px;margin-top:6px">Assisted with bookkeeping, GST return preparation and ledger reconciliation. (3 months)</div>
+          </div>
+
+          <div class="proj-item">
+            <strong>College Project — Financial Statement Analysis</strong>
+            <div style="color:var(--muted);font-size:13px;margin-top:6px">Analyzed financial statements of a listed company and prepared a short report with ratios and insights.</div>
+          </div>
+        </div>
+      </section>
+
+      <aside>
+        <div class="card">
+          <h3>Contact</h3>
+          <p class="contact"><small>Email</small><br /><a class="link" href="mailto:contact@rushilthind.com">contact@rushilthind.com</a></p>
+          <p class="contact"><small>Phone</small><br /><a class="link" href="tel:+918288950838">+91 82889 50838</a></p>
+
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <a class="download" href="/resume_rushil_thind.pdf" download>📄 Download Resume</a>
+            <a class="btn" href="#projects">Portfolio</a>
+          </div>
+
+          <hr style="margin:16px 0;border:none;border-top:1px solid rgba(0,0,0,0.05)" />
+
+          <h4 style="margin:0 0 8px 0">Quick Links</h4>
+          <div class="grid">
+            <a class="link" href="#about">About</a>
+            <a class="link" href="#education">Education</a>
+            <a class="link" href="#projects">Projects</a>
+            <a class="link" href="#contact">Contact</a>
+          </div>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="card">
+          <h3>Availability</h3>
+          <p style="color:var(--muted)">Open to internships (part-time / remote). Willing to work on short projects related to bookkeeping, GST filings, and Excel analysis.</p>
+        </div>
+      </aside>
     </main>
 
-    <!-- Footer & Contact Section -->
-    <footer id="contact" class="bg-card-bg py-12 mt-16 border-t border-gray-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold text-white mb-4">Get In Touch</h2>
-            <p class="text-lg text-gray-400 mb-6">
-                I'm always open to discussing new academic projects, internships, or opportunities in finance and business.
-            </p>
+    <section id="contact" style="max-width:800px;margin:28px auto 0">
+      <div class="card">
+        <div class="section-title"><h3>Get in touch</h3><small style="color:var(--muted)">Send a quick message</small></div>
+        <form id="contactForm" onsubmit="return submitForm(event)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <input type="text" id="name" placeholder="Your name" required />
+            <input type="email" id="email" placeholder="Your email" required />
+          </div>
+          <div style="margin-top:10px">
+            <input type="text" id="subject" placeholder="Subject" />
+          </div>
+          <div style="margin-top:10px">
+            <textarea id="message" rows="6" placeholder="Message" required></textarea>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+            <button class="btn primary" type="submit">Send message</button>
+            <small style="color:var(--muted)">Or email me at <a class="link" href="mailto:contact@rushilthind.com">contact@rushilthind.com</a></small>
+          </div>
+        </form>
+      </div>
+    </section>
 
-            <p class="text-2xl font-bold text-primary-accent mb-8">
-                <a href="mailto:your.email@example.com" class="hover:underline">your.email@example.com</a>
-            </p>
-
-            <!-- Social Links -->
-            <div class="flex justify-center space-x-6">
-                <!-- LinkedIn SVG -->
-                <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn" class="text-gray-400 hover:text-primary-accent transition duration-200">
-                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><path d="M2 9h4v12H2V9z"/><circle cx="4" cy="4" r="2" fill="currentColor"/></svg>
-                </a>
-                <!-- Email SVG (as placeholder for another link) -->
-                <a href="mailto:your.email@example.com" aria-label="Email" class="text-gray-400 hover:text-primary-accent transition duration-200">
-                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zM4 6l8 5 8-5v2L12 13 4 8V6z"/></svg>
-                </a>
-                <!-- Placeholder for X/Twitter or similar -->
-                <a href="https://twitter.com/yourhandle" target="_blank" aria-label="Twitter/X" class="text-gray-400 hover:text-primary-accent transition duration-200">
-                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.256L21.602 22H11.53l-6.685-9.28L4.1 2H6.55L10.39 6.223L14.737 2H18.244zM4.2 21.602c1.55 0 2.923-.74 3.79-1.996L14.86 8.35c.87-.82 1.39-1.895 1.39-3.048h-3.308L7.042 16.732c-.88.82-1.39 1.895-1.39 3.048h3.308L4.2 21.602z" /></svg>
-                </a>
-            </div>
-
-            <p class="text-sm text-gray-600 mt-8">
-                &copy; <span id="current-year"></span> Rushil Thind. Built with Tailwind CSS.
-            </p>
-        </div>
+    <footer>
+      <small>© <span id="year"></span> Rushil Thind · Built with ❤️</small>
     </footer>
+  </div>
 
-    <!-- CSS Class Definitions for Reusability -->
-    <style>
-        .skill-badge {
-            @apply inline-block px-4 py-1 text-sm font-medium bg-sky-900/50 text-primary-accent rounded-full shadow-md transition duration-200 hover:bg-sky-900 hover:scale-105;
-        }
-    </style>
-
-    <script>
-        // Get current year for footer copyright
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Mobile Menu Logic
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-            } else {
-                menu.classList.add('hidden');
-            }
-        }
-        document.getElementById('mobile-menu-button').addEventListener('click', toggleMobileMenu);
-
-        // Simple smooth scrolling for navigation (optional, but nice UX)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    function submitForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim() || 'Message from website';
+      const message = document.getElementById('message').value.trim();
+      const mailto = `mailto:contact@rushilthind.com?subject=${encodeURIComponent(subject + ' — ' + name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + name + ' (' + email + ')')}`;
+      window.location.href = mailto;
+      return false;
+    }
+  </script>
 </body>
 </html>
