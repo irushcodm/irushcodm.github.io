@@ -3,160 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rushil Thind | Student & Developer</title>
-    
+    <title>Siddharth | BCom Student & Analyst</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font family -->
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Dark background */
+            color: #e5e7eb; /* Light text */
         }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px 0;
-        }
-        header {
-            background: #333;
-            color: #ffffff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #007bff 3px solid;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        header p {
-            font-size: 1.1em;
-            margin-bottom: 30px;
-        }
-        section {
-            padding: 20px 0;
-            border-bottom: #ccc 1px solid;
-        }
-        h2 {
-            color: #007bff;
-            border-bottom: 2px solid #ccc;
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-        }
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        ul li {
-            background: #e9e9e9;
-            padding: 10px;
-            margin-bottom: 5px;
-            border-left: 4px solid #007bff;
-        }
-        .project-card {
-            background: #fff;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .project-card h3 {
-            margin-top: 0;
-        }
-        footer {
-            background: #333;
-            color: #ffffff;
-            text-align: center;
-            padding: 10px 0;
-            margin-top: 20px;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .contact-info {
-            text-align: center;
-        }
+        /* Custom scrollbar for aesthetics */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
+        ::-webkit-scrollbar-track { background: #0d1117; }
     </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-accent': '#38bdf8', // Sky Blue 400
+                        'card-bg': '#1f2937', // Dark Grey/Blue
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    
-    <header>
-        <div class="container">
-            <h1>RUSHIL THIND</h1>
-            <p>B.Tech Student | Aspiring Developer | AI/ML Enthusiast</p>
+<body class="min-h-screen">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-[#0d1117]/95 backdrop-blur-sm shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-primary-accent">Siddharth Sharma</div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#about" class="text-gray-300 hover:text-primary-accent transition duration-200">About</a>
+                <a href="#education" class="text-gray-300 hover:text-primary-accent transition duration-200">Education</a>
+                <a href="#skills" class="text-gray-300 hover:text-primary-accent transition duration-200">Skills</a>
+                <a href="#projects" class="text-gray-300 hover:text-primary-accent transition duration-200">Projects</a>
+                <a href="#contact" class="text-gray-300 hover:text-primary-accent transition duration-200">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-primary-accent focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2 text-center bg-[#0d1117]">
+            <a href="#about" class="block text-gray-300 hover:text-primary-accent transition duration-200 py-2" onclick="toggleMobileMenu()">About</a>
+            <a href="#education" class="block text-gray-300 hover:text-primary-accent transition duration-200 py-2" onclick="toggleMobileMenu()">Education</a>
+            <a href="#skills" class="block text-gray-300 hover:text-primary-accent transition duration-200 py-2" onclick="toggleMobileMenu()">Skills</a>
+            <a href="#projects" class="block text-gray-300 hover:text-primary-accent transition duration-200 py-2" onclick="toggleMobileMenu()">Projects</a>
+            <a href="#contact" class="block text-gray-300 hover:text-primary-accent transition duration-200 py-2" onclick="toggleMobileMenu()">Contact</a>
         </div>
     </header>
 
-    <div class="container">
-        
-        <section id="about">
-            <h2>About Me</h2>
-            <p>I am a 19-year-old computer science student currently pursuing my degree at [Your University Name]. I have a strong passion for software development and a keen interest in data structures, algorithms, and exploring the potential of machine learning. I am actively seeking internships and opportunities to apply theoretical knowledge to real-world problems.</p>
-        </section>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
 
-        <section id="education">
-            <h2>Education</h2>
-            <ul>
-                <li>
-                    <strong>[Your Degree Name]</strong> | [Your Major]
-                    <br> [Your University Name], [City] | [Start Year] - [Expected Graduation Year]
-                    <br> Current GPA: [Your GPA]
-                </li>
-                <li>
-                    <strong>Higher Secondary Education</strong> 
-                    <br> [Your School Name] | [Graduation Year]
-                </li>
-            </ul>
-        </section>
-        
-        <section id="projects">
-            <h2>Key Projects</h2>
-            
-            <div class="project-card">
-                <h3>[Project 1 Name]</h3>
-                <p>A brief description of your project (e.g., A Python-based weather predictor application). This project demonstrated my skill in data scraping and API integration.</p>
-                <p><strong>Technologies:</strong> Python, Pandas, [Library/Framework]</p>
-                <p><a href="[Link to GitHub Repository]" target="_blank">View on GitHub</a></p>
+        <!-- Hero Section -->
+        <section id="hero" class="text-center py-20">
+            <div class="w-32 h-32 mx-auto mb-6 bg-gray-700 rounded-full flex items-center justify-center border-4 border-primary-accent shadow-xl">
+                <!-- Replace with your professional photo or icon -->
+                <span class="text-5xl font-extrabold text-primary-accent">SS</span>
             </div>
-            
-            <div class="project-card">
-                <h3>[Project 2 Name]</h3>
-                <p>A responsive web interface built using HTML, CSS, and JavaScript. Focused on clean UI/UX design and accessibility standards.</p>
-                <p><strong>Technologies:</strong> HTML5, CSS3, JavaScript, [Framework]</p>
-                <p><a href="[Link to Live Demo or GitHub]" target="_blank">View Live</a></p>
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-2 leading-tight">
+                Hi, I'm <span class="text-primary-accent">Siddharth</span>
+            </h1>
+            <p class="text-xl text-gray-400 mb-8">
+                Second-Year B.Com Student | Aspiring Financial Analyst
+            </p>
+            <a href="#contact" class="bg-primary-accent text-gray-900 font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-sky-300 transition duration-300 transform hover:scale-105">
+                Connect with Me
+            </a>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="pt-10 border-t border-gray-700">
+            <h2 class="text-3xl font-bold text-white mb-6 border-b-2 border-primary-accent inline-block pb-1">About Me</h2>
+            <div class="bg-card-bg p-8 rounded-xl shadow-2xl">
+                <p class="text-lg text-gray-300 leading-relaxed">
+                    I am a highly motivated second-year Bachelor of Commerce student with a strong foundation in **Financial Accounting**, **Business Law**, and **Economics**. My core interest lies in leveraging **data analysis** to drive strategic business decisions, particularly within the investment banking sector. I am currently focused on mastering advanced Excel modeling and learning introductory Python for financial data handling. I thrive in team environments and am actively seeking an internship opportunity to apply theoretical knowledge to real-world business challenges.
+                </p>
             </div>
-            
-        </section>
-        
-        <section id="skills">
-            <h2>Skills & Technologies</h2>
-            <ul>
-                <li><strong>Programming Languages:</strong> Python, C++, Java (Basics), JavaScript</li>
-                <li><strong>Web Development:</strong> HTML5, CSS3, GitHub Pages, Basic Flask/Node.js</li>
-                <li><strong>Tools/Databases:</strong> Git, VS Code, MySQL, MongoDB (Basics)</li>
-            </ul>
         </section>
 
-        <section id="contact" class="contact-info">
-            <h2>Connect With Me</h2>
-            <p>I am always open to discussing new projects, collaboration opportunities, and internships.</p>
-            <p><strong>Email:</strong> <a href="mailto:rushil@rushilthind.com">rushil@rushilthind.com</a> (The professional email you just set up!)</p>
-            <p><strong>LinkedIn:</strong> <a href="[Your LinkedIn Profile URL]" target="_blank">/in/RushilThind</a></p>
-            <p><strong>GitHub:</strong> <a href="[Your GitHub Profile URL]" target="_blank">/YourGitHubUsername</a></p>
+        <!-- Education and Skills Section (Side-by-Side on Desktop) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+            <!-- Education Section -->
+            <section id="education" class="pt-10 border-t border-gray-700">
+                <h2 class="text-3xl font-bold text-white mb-6 border-b-2 border-primary-accent inline-block pb-1">Education</h2>
+                <div class="space-y-6">
+                    <!-- BCom Entry -->
+                    <div class="bg-card-bg p-6 rounded-xl shadow-xl hover:shadow-primary-accent/30 transition duration-300">
+                        <h3 class="text-xl font-semibold text-primary-accent">Bachelor of Commerce (B.Com)</h3>
+                        <p class="text-gray-300 mt-1">Delhi University (Example Institution)</p>
+                        <p class="text-sm text-gray-400">Expected Graduation: June 2026</p>
+                        <ul class="list-disc list-inside text-gray-400 text-sm mt-3 space-y-1">
+                            <li>Major Courses: Financial Management, Cost Accounting, Corporate Tax.</li>
+                            <li>Current GPA/Percentage: 8.5/10.0 (or mention percentage).</li>
+                        </ul>
+                    </div>
+                    <!-- High School/Intermediate Entry -->
+                    <div class="bg-card-bg p-6 rounded-xl shadow-xl">
+                        <h3 class="text-xl font-semibold text-white">High School/Intermediate</h3>
+                        <p class="text-gray-300 mt-1">St. Xavier's School (Example Institution)</p>
+                        <p class="text-sm text-gray-400">Graduated: May 2023 | Commerce Stream: 95%</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="pt-10 border-t border-gray-700">
+                <h2 class="text-3xl font-bold text-white mb-6 border-b-2 border-primary-accent inline-block pb-1">Skills</h2>
+                <div class="bg-card-bg p-6 rounded-xl shadow-xl">
+                    <h3 class="text-xl font-semibold text-primary-accent mb-4">Technical & Software</h3>
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <span class="skill-badge">Advanced MS Excel</span>
+                        <span class="skill-badge">Tally ERP</span>
+                        <span class="skill-badge">Financial Modeling</span>
+                        <span class="skill-badge">Basic Python (Pandas)</span>
+                        <span class="skill-badge">SQL (Introductory)</span>
+                        <span class="skill-badge">PowerPoint & Presentation</span>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-primary-accent mb-4">Soft Skills</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-badge">Analytical Thinking</span>
+                        <span class="skill-badge">Team Collaboration</span>
+                        <span class="skill-badge">Effective Communication</span>
+                        <span class="skill-badge">Time Management</span>
+                        <span class="skill-badge">Problem-Solving</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Projects Section -->
+        <section id="projects" class="pt-10 border-t border-gray-700">
+            <h2 class="text-3xl font-bold text-white mb-8 border-b-2 border-primary-accent inline-block pb-1">Academic Projects & Experience</h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project 1 Card -->
+                <div class="bg-card-bg p-6 rounded-xl shadow-xl hover:ring-2 ring-primary-accent transition duration-300">
+                    <h3 class="text-2xl font-semibold text-primary-accent mb-2">Financial Statement Analysis</h3>
+                    <span class="text-sm text-gray-400 block mb-3">Academic Project | Oct 2024</span>
+                    <p class="text-gray-300 mb-4">
+                        Conducted a comprehensive ratio analysis of a publicly traded FMCG company over three fiscal years. Identified trends in profitability, liquidity, and solvency, culminating in a detailed 15-page report recommending a 'Hold' position.
+                    </p>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-sm text-primary-accent hover:text-sky-300 font-medium">
+                        View Details/Report Outline &rarr;
+                    </a>
+                </div>
+
+                <!-- Project 2 Card (or Internship) -->
+                <div class="bg-card-bg p-6 rounded-xl shadow-xl hover:ring-2 ring-primary-accent transition duration-300">
+                    <h3 class="text-2xl font-semibold text-primary-accent mb-2">Market Research for Startup X</h3>
+                    <span class="text-sm text-gray-400 block mb-3">Volunteer Experience | Summer 2024</span>
+                    <p class="text-gray-300 mb-4">
+                        Assisted a local startup by researching competitor pricing strategies and consumer demographics. Compiled findings into an interactive Excel dashboard to help leadership finalize their Q4 marketing budget and product positioning.
+                    </p>
+                    <a href="https://github.com/yourprofile" target="_blank" class="text-sm text-primary-accent hover:text-sky-300 font-medium">
+                        View Artifacts &rarr;
+                    </a>
+                </div>
+            </div>
         </section>
+    </main>
 
-    </div>
+    <!-- Footer & Contact Section -->
+    <footer id="contact" class="bg-card-bg py-12 mt-16 border-t border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Get In Touch</h2>
+            <p class="text-lg text-gray-400 mb-6">
+                I'm always open to discussing new academic projects, internships, or opportunities in finance and business.
+            </p>
 
-    <footer>
-        <p>&copy; 2025 Rushil Thind | Hosted on GitHub Pages</p>
+            <p class="text-2xl font-bold text-primary-accent mb-8">
+                <a href="mailto:your.email@example.com" class="hover:underline">your.email@example.com</a>
+            </p>
+
+            <!-- Social Links -->
+            <div class="flex justify-center space-x-6">
+                <!-- LinkedIn SVG -->
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn" class="text-gray-400 hover:text-primary-accent transition duration-200">
+                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><path d="M2 9h4v12H2V9z"/><circle cx="4" cy="4" r="2" fill="currentColor"/></svg>
+                </a>
+                <!-- Email SVG (as placeholder for another link) -->
+                <a href="mailto:your.email@example.com" aria-label="Email" class="text-gray-400 hover:text-primary-accent transition duration-200">
+                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zM4 6l8 5 8-5v2L12 13 4 8V6z"/></svg>
+                </a>
+                <!-- Placeholder for X/Twitter or similar -->
+                <a href="https://twitter.com/yourhandle" target="_blank" aria-label="Twitter/X" class="text-gray-400 hover:text-primary-accent transition duration-200">
+                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.256L21.602 22H11.53l-6.685-9.28L4.1 2H6.55L10.39 6.223L14.737 2H18.244zM4.2 21.602c1.55 0 2.923-.74 3.79-1.996L14.86 8.35c.87-.82 1.39-1.895 1.39-3.048h-3.308L7.042 16.732c-.88.82-1.39 1.895-1.39 3.048h3.308L4.2 21.602z" /></svg>
+                </a>
+            </div>
+
+            <p class="text-sm text-gray-600 mt-8">
+                &copy; <span id="current-year"></span> Siddharth Sharma. Built with Tailwind CSS.
+            </p>
+        </div>
     </footer>
 
+    <!-- CSS Class Definitions for Reusability -->
+    <style>
+        .skill-badge {
+            @apply inline-block px-4 py-1 text-sm font-medium bg-sky-900/50 text-primary-accent rounded-full shadow-md transition duration-200 hover:bg-sky-900 hover:scale-105;
+        }
+    </style>
+
+    <script>
+        // Get current year for footer copyright
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Logic
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        }
+        document.getElementById('mobile-menu-button').addEventListener('click', toggleMobileMenu);
+
+        // Simple smooth scrolling for navigation (optional, but nice UX)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
