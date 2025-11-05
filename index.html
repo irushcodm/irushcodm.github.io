@@ -182,14 +182,50 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Improved contact form handler: tries to open the user's mail client, then falls back
+    // to changing location or copying the mailto link to clipboard so the user can paste it.
     function submitForm(e){
       e.preventDefault();
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const subject = document.getElementById('subject').value.trim() || 'Message from website';
       const message = document.getElementById('message').value.trim();
-      const mailto = `mailto:contact@rushilthind.com?subject=${encodeURIComponent(subject + ' — ' + name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + name + ' (' + email + ')')}`;
-      window.location.href = mailto;
+
+      if(!message){
+        alert('Please enter a message before sending.');
+        return false;
+      }
+
+      const mailto = `mailto:contact@rushilthind.com?subject=${encodeURIComponent(subject + ' — ' + name)}&body=${encodeURIComponent(message + '
+
+From: ' + name + ' (' + email + ')')}`;
+
+      // Try to open mail client in a way that's more reliable across browsers
+      try{
+        // Prefer opening in same tab (works well on desktop)
+        window.location.href = mailto;
+      }catch(err){
+        try{
+          // Fallback to window.open
+          const w = window.open(mailto, '_blank');
+          if(!w){
+            // popup blocked — try copying to clipboard
+            throw new Error('popup-blocked');
+          }
+        }catch(err2){
+          // Final fallback: copy mailto to clipboard and inform the user
+          if(navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(mailto).then(()=>{
+              alert('Could not open your mail client automatically. The mailto link was copied to your clipboard — paste it into your browser address bar or email client.');
+            }).catch(()=>{
+              alert('Could not open mail client and could not copy to clipboard. Please email: contact@rushilthind.com');
+            });
+          }else{
+            alert('Could not open mail client. Please email: contact@rushilthind.com');
+          }
+        }
+      }
       return false;
     }
   </script>
